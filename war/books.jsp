@@ -7,7 +7,7 @@
 <%@ 
    page language = "java" 
    import = "org.me.webapps.bookstore.*, java.util.*" 
-   session = "true"
+   session = "true"   
 %>
 
 <!-- begin document -->
@@ -21,6 +21,28 @@
 </head>
 
 <body>
+		<% session.setAttribute("returnurl", "books.jsp"); %>
+		<table id="table-login" width="100%" border=0>
+			<tr><td style="float:right" >
+			<% 
+					Object destPageObj = session.getAttribute( "currentSessionUser" );
+		      String strusername = "";
+		      if( destPageObj != null ) 
+		      			{
+		    	  strusername = destPageObj.toString();
+		          pageContext.getOut().println("hello, " + strusername + " | ");
+		      %>
+		      <a href="logout">Logout</a>
+		      <%
+		    		} else {
+		      %>
+		      <a href="login.jsp">Login / Sign up</a>
+		      <%		
+		      			}
+			%>
+			
+			</td></tr>
+		</table>
    <p class = "bigFont">Available Books</p>
 
    <p class = "bold">Click a link to view book information</p>
