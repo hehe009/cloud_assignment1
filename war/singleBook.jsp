@@ -20,7 +20,27 @@
         type = "text/css" />
     </head>
     <body>
-
+    				<% session.setAttribute("returnurl", "displayBook?isbn="+book.getISBN()); %>
+					<table id="table-login" width="100%" border=0>
+							<tr><td style="float:right" >
+							<% 
+									Object destPageObj = session.getAttribute( "currentSessionUser" );
+						      String strusername = "";
+						      if( destPageObj != null ) 
+						      			{
+						    	  strusername = destPageObj.toString();
+						          pageContext.getOut().println("hello, " + strusername + " | ");
+						      %>
+						      <a href="logout">Logout</a>
+						      <%
+						    		} else {
+						      %>
+						      <a href="login.jsp">Login / Sign up</a>
+						      <%		
+						      			}
+							%>
+							</td></tr>
+						</table>
         <h1><%= book.getTitle() %></h1>
     
         <table>

@@ -33,8 +33,15 @@ public class LoginServlet extends HttpServlet {
 			{
 
 				HttpSession session = request.getSession(true);	    
-				session.setAttribute("currentSessionUser", user.getUsername()); 
-				response.sendRedirect("books.jsp"); //logged-in page      		
+				session.setAttribute("currentSessionUser", user.getUsername());
+				
+				Object objReturnurl = session.getAttribute( "returnurl" );
+				if( objReturnurl != null ) 
+				{
+					response.sendRedirect(objReturnurl.toString());
+				} else {
+					response.sendRedirect("books.jsp"); //logged-in page
+				}
 			}
 
 			//else 

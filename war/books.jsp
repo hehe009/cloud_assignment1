@@ -40,7 +40,6 @@
 		      <%		
 		      			}
 			%>
-			
 			</td></tr>
 		</table>
    <p class = "bigFont">Available Books</p>

@@ -8,6 +8,13 @@
 <link rel = "stylesheet" href = "styles.css" type = "text/css" />
 </head>
 <body>
+	<% 
+			Object objReturnurl = session.getAttribute( "returnurl" );
+			if( objReturnurl != null ) 
+			{
+				session.setAttribute("returnurl", objReturnurl.toString());
+		    }
+		    %>
 		<h1>Returning?</h1>
 		<form action="login" method="post">		
 			 <table>  
@@ -24,7 +31,7 @@
             <td class = "right bold">password:</td>
 
             <td>
-               <input type = "text" name = "txtpassword" 
+               <input type = "password" name = "txtpassword" 
                   size = "25" />
             </td>
          </tr>

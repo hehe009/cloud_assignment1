@@ -1,7 +1,6 @@
 package org.me.webapps.bookstore;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,12 +23,6 @@ public class LogoutServlet extends HttpServlet {
 		Object objurl = session.getAttribute( "returnurl" );
 		
 		session.invalidate();
-		
-		if( objurl != null ) {
-			String strurl = objurl.toString();
-			response.sendRedirect(strurl);
-		} else {
-			response.sendRedirect("login.jsp");
-		}
+		response.sendRedirect("books.jsp");
 	}
 }
