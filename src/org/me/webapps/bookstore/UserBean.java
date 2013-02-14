@@ -1,5 +1,11 @@
 package org.me.webapps.bookstore;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class UserBean {
 
 	private String username;
@@ -7,6 +13,9 @@ public class UserBean {
     private String firstName;
     private String lastName;
     public boolean valid;
+    private Connection connection;
+    private PreparedStatement customrecord;
+    private ResultSet result;
     
     public String getFirstName() {
         return firstName;
@@ -45,6 +54,37 @@ public class UserBean {
 
 				
      public boolean isValid() {
+    	 		try {
+    	 			Class.forName("org.hsqldb.jdbcDriver");
+    				connection = DriverManager.getConnection( "jdbc:hsqldb:hsql://localhost/bookdb", "sa", "" );
+    				customrecord = connection
+    						.prepareStatement("SELECT username,password FROM customers WHERE username = ? AND password = ?");
+    				customrecord.setString(1, username);
+    				customrecord.setString(2, password);
+    				result = customrecord.executeQuery();				
+    				if (result.next()) {
+    					valid = true;
+    				     }
+    				result.close();
+    				customrecord.close();
+    				connection.close();
+    	 		} catch (Throwable theException) {
+    	 			try {
+    	 				if (result != null) {
+    	 					result.close();
+    	 				}
+    	 				if (customrecord != null) {
+    	 					customrecord.close();
+    	 				}
+    					connection.close();
+    					System.out.println("Connection closed");
+    				}
+
+    				// process SQLException on close operation
+    				catch (SQLException sqlException) {
+    					sqlException.printStackTrace();
+    				}
+    	 		}
         return valid;
 	}
 

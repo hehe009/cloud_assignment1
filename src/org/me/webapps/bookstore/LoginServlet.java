@@ -28,8 +28,7 @@ public class LoginServlet extends HttpServlet {
 			user.setUserName(request.getParameter("txtusername"));
 			user.setPassword(request.getParameter("txtpassword"));
 
-//			if (user.isValid())
-			if (true)
+			if (user.isValid())
 			{
 
 				HttpSession session = request.getSession(true);	    
@@ -44,8 +43,8 @@ public class LoginServlet extends HttpServlet {
 				}
 			}
 
-			//else 
-				//response.sendRedirect("invalidLogin.jsp"); //error page 
+			else 
+				response.sendRedirect("login.jsp?login=false"); //error page 
 		} 
 
 

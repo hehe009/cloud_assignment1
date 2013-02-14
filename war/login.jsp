@@ -16,6 +16,21 @@
 		    }
 		    %>
 		<h1>Returning?</h1>
+		<%
+		Object objlogin = request.getParameter("login");				
+		   if (objlogin != null) {
+			   if (objlogin.toString().equals("false")) {
+			%>
+			<b>
+			<%
+			pageContext.getOut().println("<b>incorrect username or password</b>");
+			%>
+			</b>
+			<%
+	     	}
+		  }
+		%>
+		
 		<form action="login" method="post">		
 			 <table>  
          <tr>

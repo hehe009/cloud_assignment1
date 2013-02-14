@@ -53,7 +53,7 @@ public class SignupServlet extends HttpServlet {
 			if (request.getParameter("txtusername").isEmpty()) {
 				out.println("username cannot be empty<br>");
 			} else {
-				strUsername = (String) request.getParameter("txtusername");
+				strUsername = (String) request.getParameter("txtusername").toLowerCase();
 				customrecord = connection
 						.prepareStatement("SELECT * FROM customers WHERE username = ?");
 				customrecord.setString(1, strUsername);				
