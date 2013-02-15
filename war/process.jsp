@@ -5,7 +5,9 @@
 
 <%-- JSP page settings --%>
 <%@ page language = "java" session = "true" %>
+<%@ page import = "org.me.webapps.bookstore.*" %>
 <%@ page import = "java.text.*" %>
+<%@ page import = "java.util.*" %>
 
 <html xmlns = "http://www.w3.org/1999/xhtml">
 
@@ -22,6 +24,18 @@
    Double d = ( Double ) session.getAttribute( "total" );
    double total = d.doubleValue();
 
+   // load purchase items for sending e-mail
+   Map cart = ( Map ) session.getAttribute( "cart" );
+		   
+   Set cartItems = cart.keySet();
+   Iterator iterator = cartItems.iterator();
+
+   BookBean book;
+   CartItemBean cartItem;
+   int quantity;
+   double price, subtotal;
+   
+   
    // invalidate session because processing is complete
    session.invalidate();
 
@@ -37,6 +51,25 @@
          $<%= new DecimalFormat( "0.00" ).format( total ) %>
       </span>
    </p>
+   <p>An e-mail with your purchased items has been sent to XXXXXX</p>
+       <%
+       String strmessage = "Thank you for purchasing at Online Book store\n"
+       																+ "Here are the item(s) you purchased:\n";
+    		 int intCount = 0;
+       while ( iterator.hasNext() ) {
+    	   		intCount += 1;
+           // get book data; calculate subtotal and total
+           cartItem = ( CartItemBean ) cart.get( iterator.next() );
+           book = cartItem.getBook();
+           quantity = cartItem.getQuantity();
+           price = book.getPrice();
+           subtotal = quantity * price;
+           
+           strmessage += "Item " + intCount + ": " + book.getTitle() + " | Qty: " + quantity + " | Unit price: " + new DecimalFormat( "0.00" ).format( price )
+						+ " | Sub total: " + new DecimalFormat( "0.00" ).format( subtotal ) + "\n";           
+       				}
+       pageContext.getOut().println(strmessage);
+       %>
 </body>
 
 </html>

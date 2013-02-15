@@ -19,6 +19,7 @@
         <!--  * for other app servers - check the docs -->
         <fileset dir="${appserver.lib}">
             <include name="servlet*.jar"/>
+            <include name="javaee.jar"/>
         </fileset>
         <pathelement path="${build.dir}"/>
     </path>
@@ -33,6 +34,9 @@
 		  <fileset dir="${appserver.comlib}">
 		    <include name="servlet-api.jar"/>
 		  </fileset>
+		  <fileset dir="${j2ee.lib}">
+    			<include name="javaee.jar"/>
+    		</fileset>
 	</path>
 
     <target name="usage">
@@ -55,7 +59,7 @@
 
     <target name="build" description="Compile main source tree java files">
         <mkdir dir="${build.dir}"/>
-        <javac destdir="${build.dir}" source="1.5" target="1.5" debug="true"
+        <javac destdir="${build.dir}" source="1.6" target="1.6" debug="true"
                deprecation="false" optimize="false" failonerror="true">
             <src path="${src.dir}"/>
             <classpath refid="servlet.lib.path"/>
@@ -71,7 +75,7 @@
     	<copy todir="${deploy.path}/${name}/WEB-INF/lib" preservelastmodified="true">
     		<fileset dir="${hsqldb.lib}">
     			<include name="hsqldb.jar"/>
-    		</fileset>
+    		</fileset>  		
     	</copy>
     </target>
 	

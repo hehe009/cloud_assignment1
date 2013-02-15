@@ -19,6 +19,7 @@
 </head>
 
 <body>
+<% session.setAttribute("returnurl", "process.jsp"); %>
    <p class = "bigFont">Shopping Cart</p>
 
 <%-- start scriptlet to display shopping cart contents --%>
@@ -113,7 +114,16 @@
    </p>
 
    <!-- form to proceed to checkout -->
-   <form method = "get" action = "order.html">
+   <%
+   Object destPageObj = session.getAttribute( "currentSessionUser" );
+   String strusername = "";
+   if( destPageObj != null ) 
+   			{
+       pageContext.getOut().println("<form method = 'post' action = 'process.jsp'>");
+     } else {
+    	 pageContext.getOut().println("<form method = 'post' action = 'login.jsp'>");
+             }  
+   %>
       <p><input type = "submit" value = "Check Out" /></p>
    </form>
 </body>

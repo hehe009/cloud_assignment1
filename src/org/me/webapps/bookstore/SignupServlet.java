@@ -153,8 +153,15 @@ public class SignupServlet extends HttpServlet {
 				customrecord.close();
 				
 				HttpSession session = request.getSession(true);
-				session.setAttribute("currentSessionUser", strUsername); 
-				response.sendRedirect("books.jsp");
+				session.setAttribute("currentSessionUser", strUsername);
+				
+				Object objReturnurl = session.getAttribute( "returnurl" );
+				if( objReturnurl != null && objReturnurl.toString().equals("process.jsp")) 
+				{
+					response.sendRedirect(objReturnurl.toString());
+				} else {
+					response.sendRedirect("books.jsp"); //logged-in page
+				}
 			} else {
 				out.println("<a href='signup.jsp'>Back to previous page</a>");
 			}
