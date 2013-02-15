@@ -1,10 +1,10 @@
 body           { text-align: center;
-                 background-color: #B0C4DE }
+                 background-image:url('images/background.png'); }
 .bold          { font-weight: bold; }
 .bigFont       { font-family: helvetica, arial, sans-serif;
                  font-weight: bold;
                  font-size: 2em;
-                 color: #00008B; }
+                 color: #256E25; }
 .italic        { font-style: italic; }
 .right         { text-align: right; }
 table, th, td  { border: 3px groove;
@@ -12,7 +12,66 @@ table, th, td  { border: 3px groove;
 table          { background-color: #6495ed; 
                  margin-left: auto;
                  margin-right: auto; }
-table-login {}
+#table-login {
+	background:transparent;
+	border:0px;
+}
+#table-login, th, td{
+	background:transparent;
+	border:0px;
+}
+
+#table-login-form {
+	background:transparent;
+	border:0px;
+}
+
+#table-booklist {
+	background:transparent;
+	text-align: left;
+	border:1px;
+}
+
+#table-booklist, th, td{
+	background:transparent;
+	border:0px;	
+}
+
+#table-singlebook {
+	background-color:rgba(255,255,255,0.6);
+	text-align: left;
+	border:0px;
+}
+
+#table-cart {
+	background-color:rgba(255,255,255,0.6);
+	text-align: center;
+	border:0px;
+}
+
+#table-signup {
+	background:transparent;
+	border:0px;
+}
+
+#container {
+   min-height:100%;
+   position:relative;
+}
+#header {
+   padding:10px;
+}
+#body {
+   padding:10px;
+   padding-bottom:60px;   /* Height of the footer */
+}
+#footer {
+   position:absolute;
+   bottom:0;
+   width:100%;
+   height:60px;   /* Height of the footer */
+   font-size:10px;
+}
 /***************************************************************
  * (C) Copyright 2001 by Deitel & Associates, Inc. and         *
  * Prentice Hall. All Rights Reserved.                         *

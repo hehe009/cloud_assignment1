@@ -32,7 +32,7 @@
 		%>
 		
 		<form action="login" method="post">		
-			 <table>  
+			 <table id="table-login-form">  
          <tr>
             <td class = "right bold">username:</td>       
 
@@ -53,8 +53,11 @@
      </table>			
 			<input type="submit" value="submit">
 			<br><br>
-			<a href="signup.jsp" >New customer sign up here</a>			
-		
+			<hr style="width: 80%; background-color: #38383D; height: 3px;">
+			<br><br>
+			<div style="font-size: 30px">
+					<b><a href="signup.jsp" >New customer sign up here</a></b>			
+		  </div>
 		</form>
 	</body>
 </html>

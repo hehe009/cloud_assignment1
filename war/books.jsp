@@ -42,9 +42,7 @@
 			%>
 			</td></tr>
 		</table>
-   <p class = "bigFont">Available Books</p>
-
-   <p class = "bold">Click a link to view book information</p>
+   <p class = "bigFont">List of Books</p>
 
    <p>
       
@@ -62,6 +60,9 @@
  
       // use the Iterator to get each BookBean and create
       // a link to each book
+      %>
+      <table id="table-booklist">
+      <%
       while ( iterator.hasNext() ) {
          currentBook = ( BookBean ) iterator.next();
 
@@ -69,21 +70,30 @@
       <%-- JSP expressions output from this loop     --%>
 
          <%-- link to a book's information --%>
+         <tr>
+         <td>
          <span class = "bold">
+      	   <img style = "border: thin solid black" height="80" width="61"
+      	    src = "images/<%= currentBook.getImageFile() %>" 
+                    alt = "<%= currentBook.getTitle() %>"  />
+        </td>
+        <td>
             <a href = 
                "displayBook?isbn=<%= currentBook.getISBN() %>">
 
-               <%= currentBook.getTitle() + ", " +
-                   currentBook.getEditionNumber() + "e" %>
+               <%= currentBook.getTitle() + "<br>" +
+                   currentBook.getEditionNumber() + " edition" %>
             </a>
-         </span><br />
+         </span>
+         </td>
+         </tr>
 
    <% // continue scriptlet  
 
       }   // end while loop
 
    %> <%-- end scriptlet --%> 
-
+			</table>
    </p>
 </body> 
 

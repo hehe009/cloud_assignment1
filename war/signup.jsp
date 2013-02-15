@@ -17,7 +17,7 @@
    
    <form method = "post" action = "SignupServlet">
 		<p class = "bigFont">Account information</p>
-		<table>  
+		<table id="table-signup">  
          <tr>
             <td class = "right bold">username:</td>       
 
@@ -67,7 +67,7 @@
         
 
       <!-- table of form elements -->
-      <table>  
+      <table id="table-signup">  
 
          <tr>
             <td class = "right bold">Street:</td>

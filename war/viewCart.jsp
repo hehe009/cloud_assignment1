@@ -43,7 +43,7 @@
 
 %> <%-- end scriptlet for literal XHTML output --%>
 
-   <table>
+   <table id="table-cart">
       <thead><tr>
          <th>Product</th>
          <th>Quantity</th>

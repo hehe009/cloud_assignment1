@@ -41,9 +41,9 @@
 							%>
 							</td></tr>
 						</table>
-        <h1><%= book.getTitle() %></h1>
+        <p class = "bigFont"> <%= book.getTitle() %></p>
     
-        <table>
+        <table id="table-singlebook">
             <tr>
                 <!-- create table cell for product image -->
                 <td rowspan = "5">  <!-- cell spans 5 rows -->
@@ -89,10 +89,7 @@
                     <form method = "post" action="addToCart">
                         <p><input type = "submit" value = "Add to Cart" /></p>
                     </form>
-                </td>
-
-                <!-- create View Cart button in row 5 -->
-                <td>
+              <br>
                     <form method = "get" action="viewCart.jsp">
                         <p><input type = "submit" value = "View Cart" /></p>
                     <form>
