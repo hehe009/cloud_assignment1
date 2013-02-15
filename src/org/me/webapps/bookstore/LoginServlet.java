@@ -33,6 +33,7 @@ public class LoginServlet extends HttpServlet {
 
 				HttpSession session = request.getSession(true);	    
 				session.setAttribute("currentSessionUser", user.getUsername());
+				session.setAttribute("currentSessionUserEmail", user.getEmail());
 				
 				Object objReturnurl = session.getAttribute( "returnurl" );
 				if( objReturnurl != null ) 

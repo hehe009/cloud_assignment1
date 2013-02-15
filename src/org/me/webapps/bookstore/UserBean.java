@@ -12,6 +12,7 @@ public class UserBean {
     private String password;
     private String firstName;
     private String lastName;
+    private String email;
     public boolean valid;
     private Connection connection;
     private PreparedStatement customrecord;
@@ -58,12 +59,13 @@ public class UserBean {
     	 			Class.forName("org.hsqldb.jdbcDriver");
     				connection = DriverManager.getConnection( "jdbc:hsqldb:hsql://localhost/bookdb", "sa", "" );
     				customrecord = connection
-    						.prepareStatement("SELECT username,password FROM customers WHERE username = ? AND password = ?");
+    						.prepareStatement("SELECT username,password, email FROM customers WHERE username = ? AND password = ?");
     				customrecord.setString(1, username);
     				customrecord.setString(2, password);
     				result = customrecord.executeQuery();				
     				if (result.next()) {
     					valid = true;
+    					email = result.getString("email");
     				     }
     				result.close();
     				customrecord.close();
@@ -90,5 +92,13 @@ public class UserBean {
 
      public void setValid(boolean newValid) {
         valid = newValid;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}	
 }

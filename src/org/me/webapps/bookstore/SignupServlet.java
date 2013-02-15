@@ -154,6 +154,7 @@ public class SignupServlet extends HttpServlet {
 				
 				HttpSession session = request.getSession(true);
 				session.setAttribute("currentSessionUser", strUsername);
+				session.setAttribute("currentSessionUserEmail", strEmail);
 				
 				Object objReturnurl = session.getAttribute( "returnurl" );
 				if( objReturnurl != null && objReturnurl.toString().equals("process.jsp")) 

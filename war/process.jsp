@@ -20,6 +20,8 @@
 
 <% // start scriptlet
 
+		// get user e-mail
+		String stremail = (String) session.getAttribute( "currentSessionUserEmail" );
    // get total order amount
    Double d = ( Double ) session.getAttribute( "total" );
    double total = d.doubleValue();
@@ -51,7 +53,7 @@
          $<%= new DecimalFormat( "0.00" ).format( total ) %>
       </span>
    </p>
-   <p>An e-mail with your purchased items has been sent to XXXXXX</p>
+   <p>An e-mail with your purchased items has been sent to <%= stremail %></p>
        <%
        String strmessage = "Thank you for purchasing at Online Book store\n"
        																+ "Here are the item(s) you purchased:\n";
