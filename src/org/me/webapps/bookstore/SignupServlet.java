@@ -7,6 +7,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -41,7 +43,9 @@ public class SignupServlet extends HttpServlet {
 		
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-
+		
+		boolprocess = true;
+		
 		try
 		{	 
 			response.setContentType("text/html");
@@ -164,7 +168,7 @@ public class SignupServlet extends HttpServlet {
 					response.sendRedirect("books.jsp"); //logged-in page
 				}
 			} else {
-				out.println("<a href='signup.jsp'>Back to previous page</a>");
+				out.println("<br><br><a href='signup.jsp'>Back to previous page</a>");
 			}
 		} catch (Throwable theException) 	    
 		{
