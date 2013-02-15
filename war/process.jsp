@@ -53,25 +53,38 @@
          $<%= new DecimalFormat( "0.00" ).format( total ) %>
       </span>
    </p>
-   <p>An e-mail with your purchased items has been sent to <%= stremail %></p>
+   <p>An e-mail confirmation with your purchased items has been sent to <b><%= stremail %></b></p>
        <%
-       String strmessage = "Thank you for purchasing at Online Book store\n"
-       																+ "Here are the item(s) you purchased:\n";
-    		 int intCount = 0;
-       while ( iterator.hasNext() ) {
-    	   		intCount += 1;
-           // get book data; calculate subtotal and total
-           cartItem = ( CartItemBean ) cart.get( iterator.next() );
-           book = cartItem.getBook();
-           quantity = cartItem.getQuantity();
-           price = book.getPrice();
-           subtotal = quantity * price;
-           
-           strmessage += "Item " + intCount + ": " + book.getTitle() + " | Qty: " + quantity + " | Unit price: " + new DecimalFormat( "0.00" ).format( price )
-						+ " | Sub total: " + new DecimalFormat( "0.00" ).format( subtotal ) + "\n";           
-       				}
-       pageContext.getOut().println(strmessage);
+       	String strmessage = "Thank you for purchasing at Online Book store\n\n"
+              																+ "Here are the item(s) you purchased:\n\n";
+           		 int intCount = 0;
+              while ( iterator.hasNext() ) {
+           	   		intCount += 1;
+                  // get book data; calculate subtotal and total
+                  cartItem = ( CartItemBean ) cart.get( iterator.next() );
+                  book = cartItem.getBook();
+                  quantity = cartItem.getQuantity();
+                  price = book.getPrice();
+                  subtotal = quantity * price;
+                  
+                  strmessage += "Item " + intCount + ": " + book.getTitle() + " | Qty: " + quantity + " | Unit price: " + new DecimalFormat( "0.00" ).format( price )
+       				+ " | Sub total: " + new DecimalFormat( "0.00" ).format( subtotal ) + "\n\n";           
+              				}
+              strmessage += "\n\nTotal: " + new DecimalFormat( "0.00" ).format( total );
+              
+              		
+              // send mail
+              SendMail sm = new SendMail();
+				       	sm.setTo(stremail);				       	
+				       	sm.setSubject("Purchasing Confirmation");
+				       	sm.setMessage(strmessage);
+				       	if (sm.send()) {
+				       		System.out.println("Mail sent");
+				       	} else {
+				       		System.out.println("Mail failed");
+				       	}
        %>
+       <form action="books.jsp"><input type="submit" value="Start over"></form>
 </body>
 
 </html>
