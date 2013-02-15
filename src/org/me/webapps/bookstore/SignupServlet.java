@@ -161,7 +161,7 @@ public class SignupServlet extends HttpServlet {
 				session.setAttribute("currentSessionUserEmail", strEmail);
 				
 				Object objReturnurl = session.getAttribute( "returnurl" );
-				if( objReturnurl != null && objReturnurl.toString().equals("process.jsp")) 
+				if( objReturnurl != null && objReturnurl.toString().equals("finish.jsp")) 
 				{
 					response.sendRedirect(objReturnurl.toString());
 				} else {
